@@ -1,0 +1,6 @@
+scala_sbt:
+  container_name: scala_sbt
+  build: .
+  volumes:
+    - ./scripts:/opt/scala
+  tty: true
