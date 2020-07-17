@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  pycaret:
+    container_name: pycaret_example
+    image: pycaret_example:0.1.0
+    build: .
+    tty: true
+    stdin_open: true
+    ipc: host
+    ports:
+      - "8886:8886"
+    volumes:
+      - ./notebook:/opt/notebook
+    environment:
+      - JUPYTER_CONFIG_DIR=/opt/notebook
+    working_dir: /opt/notebook
