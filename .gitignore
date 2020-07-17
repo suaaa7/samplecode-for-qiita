@@ -16,3 +16,8 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 .idea
+
+# pycaret_example
+*.csv
+pycaret_example/notebook/.ipynb_checkpoints
+pycaret_example/notebook/catboost_info
