@@ -1,14 +1,22 @@
 import json
 from unittest import TestCase, main
-
-from flask_app.app import app
+from unittest.mock import Mock, patch
 
 print('In app_test')
 
 class AppTestCase(TestCase):
     def setUp(self):
         print('Call setUp in AppTestCase')
+
+        self.load_model_patcher = patch('flask_app.model.load_model')
+        self.load_model_m = self.load_model_patcher.start()
+        self.load_model_m.return_value = 'test'
+
+        from flask_app.app import app
         self.client = app.test_client()
+
+    def tearDown(self):
+        self.load_model_patcher.stop()
 
     def test_index(self):
         response = self.client.get('/')
