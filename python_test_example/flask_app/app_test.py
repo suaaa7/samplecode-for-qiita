@@ -1,6 +1,6 @@
 import json
 from unittest import TestCase, main
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 print('In app_test')
 
@@ -37,6 +37,11 @@ class AppTestCase(TestCase):
     def test_predict_data(self):
         response = self.client.post('/predict')
         self.assertIsInstance(json.loads(response.data)['result'], float)
+
+    @patch('flask_app.service.Service.check_model', return_value=False)
+    def test_predict_503(self, mock):
+        response = self.client.post('/predict')
+        self.assertEqual(response.status_code, 503)
 
 if __name__ == '__main__':
     main()

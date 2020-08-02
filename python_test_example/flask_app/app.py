@@ -18,7 +18,7 @@ def index():
 def predict():
     print('Call predict in app')
     target = 'A'
-    if not service.check_model:
+    if not service.check_model():
         return make_response(jsonify({'message': 'Service Unavailable'}), 503)
     result = {'result': service.predict(target)}
     return make_response(jsonify(result), 200)
