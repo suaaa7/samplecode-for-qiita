@@ -1,4 +1,5 @@
-from unittest import TestCase, main, mock
+from unittest import TestCase, main
+from unittest.mock import MagicMock, call, patch
 
 from mock.my_class import MyClass
 
@@ -19,8 +20,8 @@ class MyClassTestCase(TestCase):
 
         return MockResponse(None, 404)
 
-    @mock.patch('requests.get', side_effect=mocked_requests_get)
-    def test_fetch_json(self, mock_get):
+    @patch('requests.get', side_effect=mocked_requests_get)
+    def test_fetch_json(self, mock_get: MagicMock):
         my_class = MyClass()
 
         json_data = my_class.fetch_json('http://example.com/test.json')
@@ -31,10 +32,10 @@ class MyClassTestCase(TestCase):
         self.assertIsNone(json_data)
 
         self.assertIn(
-            mock.call('http://example.com/test.json'), mock_get.call_args_list
+            call('http://example.com/test.json'), mock_get.call_args_list
         )
         self.assertIn(
-            mock.call('http://example.com/another_test.json'), mock_get.call_args_list
+            call('http://example.com/another_test.json'), mock_get.call_args_list
         )
 
         self.assertEqual(len(mock_get.call_args_list), 3)

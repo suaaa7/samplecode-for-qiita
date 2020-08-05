@@ -1,6 +1,6 @@
 import json
 from unittest import TestCase, main
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 print('In app_test')
 
@@ -39,7 +39,7 @@ class AppTestCase(TestCase):
         self.assertIsInstance(json.loads(response.data)['result'], float)
 
     @patch('flask_app.service.Service.check_model', return_value=False)
-    def test_predict_503(self, mock):
+    def test_predict_503(self, mock: MagicMock):
         response = self.client.post('/predict')
         self.assertEqual(response.status_code, 503)
 

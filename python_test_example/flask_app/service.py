@@ -10,11 +10,11 @@ class Service:
         self.model = load_model()
         print(f'self.model: {self.model}')
 
-    def predict(self, target: str):
+    def predict(self, target: str) -> float:
         print('Call predict in service')
         return randint(0, 1000) / 1000.0
 
-    def check_model(self):
+    def check_model(self) -> bool:
         if self.model:
             return True
         return False
