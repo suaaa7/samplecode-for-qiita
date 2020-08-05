@@ -17,7 +17,8 @@ project/plugins/project/
 .worksheet
 .idea
 
-# pycaret_example
+# pycaret_example & python_test_example
 *.csv
 pycaret_example/notebook/.ipynb_checkpoints
 pycaret_example/notebook/catboost_info
+__pycache__
