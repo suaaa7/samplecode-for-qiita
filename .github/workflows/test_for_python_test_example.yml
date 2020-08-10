@@ -15,7 +15,7 @@ jobs:
     - name: Install Library
       run: |
         python3 -m pip install --upgrade pip
-        pip install requests
+        pip install requests flask
     - name: Run unittest
       run: |
         cd python_test_example
