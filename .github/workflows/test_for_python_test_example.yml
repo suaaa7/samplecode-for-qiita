@@ -1,9 +1,8 @@
-name: test
-on: push
+name: Test for python_test_example
+on: [push, pull_request]
 
 jobs:
   build:
-    name: Test for python_test_example
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
