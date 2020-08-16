@@ -10,6 +10,10 @@ dbuild:
 drun:
 	docker run --rm -it -v $(curdir):/opt -w /opt $(image):$(tag) bash
 
+.PHONY: drmi
+drmi:
+	docker rmi -f $(image):$(tag)
+
 .PHONY: all_test
 all_test:
 	python3 -m unittest discover --verbose --pattern "*_test.py"

@@ -5,7 +5,7 @@ from .model import load_model
 print('In service')
 
 class Service:
-    def __init__(self):
+    def __init__(self) -> None:
         print('Init Service')
         self.model = load_model()
         print(f'self.model: {self.model}')
