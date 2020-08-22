@@ -1,6 +1,7 @@
 import json
 
 from flask import Flask, jsonify, make_response
+from flask.wrappers import Response
 
 from .service import Service
 
@@ -10,12 +11,12 @@ print('Instantiate Service in app')
 service = Service()
 
 @app.route('/', methods=['GET'])
-def index():
+def index() -> Response:
     message = {'message': 'OK'}
     return make_response(jsonify(message), 200)
 
 @app.route('/predict', methods=['POST'])
-def predict():
+def predict() -> Response:
     print('Call predict in app')
     target = 'A'
     if not service.check_model():
