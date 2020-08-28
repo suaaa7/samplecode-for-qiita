@@ -1,0 +1,13 @@
+name: Docker build for pycaret_example
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Docker build
+      run: |
+        cd pycaret_example
+        docker build -t pycaret_example .
