@@ -1,8 +1,8 @@
 name: Test for python_test_example
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -15,7 +15,8 @@ jobs:
     - name: Install Library
       run: |
         python3 -m pip install --upgrade pip
-        pip install requests flask mypy
+        pip install requests flask
+        pip install mypy==0.782
     - name: Run mypy
       run: |
         mypy python_test_example --config-file python_test_example/mypy.ini
