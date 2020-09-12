@@ -20,10 +20,13 @@ jobs:
         pip install -r requirements.txt
     - name: Run flake8
       run: |
+        cd python_ci
         make flake8
     - name: Run mypy
       run: |
+        cd python_ci
         make mypy
     - name: Run unittest
       run: |
+        cd python_ci
         make test
