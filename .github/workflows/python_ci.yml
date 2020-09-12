@@ -1,0 +1,29 @@
+name: Python CI
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+        architecture: 'x64'
+    - name: Install Library
+      run: |
+        cd python_ci
+        python3 -m pip install --upgrade pip
+        pip install -r requirements-dev.txt
+        pip install -r requirements.txt
+    - name: Run flake8
+      run: |
+        make flake8
+    - name: Run mypy
+      run: |
+        make mypy
+    - name: Run unittest
+      run: |
+        make test
