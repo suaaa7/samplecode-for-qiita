@@ -1,4 +1,4 @@
-from unittest import TestCase, main
+from unittest import TestCase, main, skip
 from unittest.mock import patch
 
 import pandas as pd
@@ -95,6 +95,10 @@ class TestDFService(TestCase):
 
         assert_frame_equal(actual_df, expected_df)
         self.assertEqual(self.m_get_local_path.call_count, 3)
+
+    @skip('Use unittest.skip')
+    def test_tmp(self) -> None:
+        pass
 
 
 if __name__ == '__main__':
