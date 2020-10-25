@@ -2,6 +2,7 @@ from unittest import TestCase, main, skip
 from unittest.mock import patch
 
 import pandas as pd
+from pandas.api.types import is_integer_dtype
 from pandas.testing import assert_frame_equal
 
 from src.df_service import DFService
@@ -72,6 +73,7 @@ class TestDFService(TestCase):
         })
         actual_df = self.service.swap_and_remove_path(self.test_df)
 
+        self.assertTrue(is_integer_dtype(actual_df['num']))
         assert_frame_equal(actual_df, expected_df)
         self.assertEqual(self.m_get_local_path.call_count, 3)
 
@@ -93,6 +95,7 @@ class TestDFService(TestCase):
         })
         actual_df = self.service.swap_and_remove_path(self.test_df)
 
+        self.assertTrue(is_integer_dtype(actual_df['num']))
         assert_frame_equal(actual_df, expected_df)
         self.assertEqual(self.m_get_local_path.call_count, 3)
 
