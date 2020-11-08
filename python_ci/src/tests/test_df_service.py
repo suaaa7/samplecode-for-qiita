@@ -99,6 +99,19 @@ class TestDFService(TestCase):
         assert_frame_equal(actual_df, expected_df)
         self.assertEqual(self.m_get_local_path.call_count, 3)
 
+    def test_raise_attribute_error_when_no_image_hash(self) -> None:
+        self.m_get_local_path.return_value = '/opt/program/test_image.jpg'
+
+        bad_input_df = pd.DataFrame({
+            'num': [1],
+            'image_path': [
+                ['/opt/program/test_image.jpg'],
+            ]
+        })
+
+        with self.assertRaises(AttributeError):
+            self.service.swap_and_remove_path(bad_input_df)
+
     @skip('Use unittest.skip')
     def test_tmp(self) -> None:
         pass
